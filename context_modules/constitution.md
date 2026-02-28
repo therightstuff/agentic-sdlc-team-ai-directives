@@ -32,3 +32,31 @@
 
 11. **Goal-Driven Execution**
     Define success criteria. Loop until verified. Transform imperative tasks into verifiable goals with clear success metrics. For multi-step tasks, state a brief plan with what each step accomplishes and how to verify it. Strong success criteria enable autonomous looping; weak criteria require constant clarification.
+
+## AI Context
+
+1. To verify changes locally, run `npm run synth`.
+2. Never deploy autonomously; always ask for human deployment after verification.
+
+## Priorities
+
+1. Ensure code is human readable and maintainable. Simplicity is king.
+2. Ensure code is well-documented, with clear comments explaining non-obvious logic.
+3. Ensure performance is acceptable, but do not prematurely optimize.
+4. Use the smallest number of dependencies necessary to accomplish the task.
+5. Separate concerns appropriately, following best practices for modularity and single responsibility.
+6. Ensure proper error handling and logging are in place.
+7. Be consistent with existing code style and conventions used in the codebase. Pay attention to linter warnings and problems identified by SonarQube.
+8. Use meaningful variable and function names that accurately describe their purpose.
+
+## Security
+
+1. Ensure all user inputs are properly validated and sanitized to prevent vulnerabilities such as SQL injection, XSS, and other common attacks.
+2. Ensure security best practices are followed, especially regarding user data and authentication.
+3. Ensure accessibility standards are met to provide a good experience for all users.
+4. Avoid introducing SonarQube issues, especially critical and high severity findings.
+
+## Constraints
+
+1. Do not introduce breaking changes to existing functionality.
+2. Do not touch anything outside the scope of the requested changes.

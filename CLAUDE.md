@@ -8,13 +8,7 @@ This repository contains team AI directives for context-aware development.
 
 - `context_modules/constitution.md` - Core principles (always load first)
 - `context_modules/personas/` - Role-specific guidance
-- `context_modules/rules/` - Domain-specific patterns organized by functional category:
-  - `style-guides/` - Language patterns, conventions, idioms
-  - `framework/` - Architecture, DI, DDD, design patterns
-  - `security/` - Security and authentication
-  - `testing/` - Test frameworks, fixtures, practices
-  - `devops/` - CI/CD, deployment, infrastructure
-  - `data/` - Data patterns, provenance, ETL
+- `context_modules/rules/` - Domain-specific patterns organized by functional category
 - `context_modules/examples/` - Code examples by technology
 - `skills/` - Self-contained capabilities with SKILL.md
 - `.skills.json` - Skills registry and policy
@@ -26,36 +20,11 @@ This repository contains team AI directives for context-aware development.
 2. **Persona** (`context_modules/personas/*.md`) - Role-specific context
 3. **Skill** (`skills/*/SKILL.md`) - Task-specific capabilities (triggered on demand)
 
-## Functional Categories (Rules)
-
-Rules are organized by **functional concern**, not technology:
-
-| Category | Purpose | Example |
-|----------|---------|---------|
-| `style-guides/` | Language idioms and conventions | `python_pydantic_patterns.md` |
-| `framework/` | Architecture and design patterns | `python_di_container.md` |
-| `security/` | Security and authentication | `typescript_auth_middleware.md` |
-| `testing/` | Testing practices | `python_test_architecture.md` |
-| `devops/` | CI/CD and operations | `github_actions.md` |
-| `data/` | Data patterns and provenance | `python_provenance_tracking.md` |
-
-**Filename format**: `{technology}_{pattern_name}.md` (use underscores)
-
 ## Governance Commands and Skills
 
 Governance capabilities (`team.discover`, `team.curate`, `team.evolve`, `team.skills`, `team.verify`, `team.repair`) are bundled with the Specify CLI as the `team-ai-directives` extension. They are installed automatically when a project is initialized with `--team-ai-directives <this-repo>`.
 
 This repository contains only **domain skills** (for example `dbt-template`, `helm-charts`, `github-actions`). Register new domain skills in `.skills.json` and place them under `skills/{skill-name}/SKILL.md`.
-
-## Using Skills
-
-Skills in `skills/{skill-name}/`:
-
-1. Check `.skills.json` for available skills
-2. Match user request to skill description
-3. Load `SKILL.md` when triggered
-4. Check `references/` for supporting content
-5. Use `scripts/` for automation if present
 
 ## Using Rules
 

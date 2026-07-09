@@ -19,7 +19,7 @@ Install via the spec-kit CLI using the `--team-ai-directives` flag:
 specify init <project> --team-ai-directives https://github.com/your-org/team-ai-directives.git
 ```
 
-The directives are installed to `.specify/extensions/team-ai-directives/` and available to all AI agents via the extension system.
+The Specify CLI installs the bundled `team-ai-directives` extension (governance commands and skills) and copies this repository's domain skills into the agent's skills directory. Context modules are referenced through the `agent-context` extension.
 
 ```bash
 # Or from a specific release tag
@@ -622,31 +622,24 @@ The `policy` section of `.skills.json` controls agent behavior:
 
 ---
 
-## Commands
+## Governance Commands and Skills
 
-The extension provides these commands for spec-kit integration:
+Governance capabilities are bundled with the Specify CLI as the `team-ai-directives` extension and installed automatically when a project is initialized with `--team-ai-directives <this-repo>`:
 
-| Command | Purpose |
-|---------|---------|
-| `adlc.team-ai-directives.verify` | Health check - verifies extension installation, skills registry, CDR tracking, and constitution alignment |
-| `adlc.team-ai-directives.discover` | Auto-discovers relevant personas, rules, and examples for the current feature |
-| `adlc.team-ai-directives.constitution` | Loads team constitution principles before project constitution update |
+| Command | Skill | Purpose |
+|---------|-------|---------|
+| `team.discover` | `team-discover` | Discover relevant personas, rules, examples, and skills for the current feature |
+| `team.curate` | `team-curate` | Propose CDRs from execution traces |
+| `team.evolve` | `team-evolve` | Apply accepted CDRs to the knowledge base |
+| `team.skills` | `team-skills` | Browse and install team skills |
+| `team.verify` | `team-verify` | Health check - verifies knowledge base config, skills registry, CDR tracking, and constitution alignment |
+| `team.repair` | `team-repair` | Re-index CDR.md, .skills.json, and AGENTS.md |
 
-### Hooks
+### Integration
 
-The extension automatically runs commands via hooks:
+The `agent-context` extension injects team-directives awareness into the project's context file during `specify init`. It prompts the agent to invoke `team.discover` before feature work and to inherit the team constitution when updating project principles.
 
-| Hook | Command | Description |
-|------|---------|-------------|
-| `before_specify` | discover | Auto-discovers context for specification |
-| `before_plan` | discover | Auto-discovers context for planning |
-| `before_constitution` | constitution | Loads team principles before project constitution update |
-
-Run verification anytime:
-
-```bash
-specify run adlc.team-ai-directives.verify
-```
+Run verification anytime by invoking the `team.verify` command.
 
 ---
 

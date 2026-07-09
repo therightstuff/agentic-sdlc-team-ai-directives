@@ -2,8 +2,6 @@
 
 This repository contains team AI directives for context-aware development.
 
-> **OKF v0.1 Conformance**: All context modules (constitution, personas, rules, examples, skills) follow the Open Knowledge Format v0.1 specification. Each concept document includes YAML frontmatter with a `type` field (Constitution, Persona, Rule, Example, or Skill) plus standard OKF fields (`title`, `description`, `tags`, `timestamp`) alongside team-ai-directives-specific memory tracking fields.
-
 ## Structure
 
 - `context_modules/constitution.md` - Core principles (always load first)
@@ -11,7 +9,7 @@ This repository contains team AI directives for context-aware development.
 - `context_modules/rules/` - Domain-specific patterns organized by functional category:
   - `style-guides/` - Language patterns, conventions, idioms
   - `framework/` - Architecture, DI, DDD, design patterns
-  - `security/` - Security and authentication
+  - `security/` - Authentication, authorization, secrets
   - `testing/` - Test frameworks, fixtures, practices
   - `devops/` - CI/CD, deployment, infrastructure
   - `data/` - Data patterns, provenance, ETL
@@ -41,12 +39,6 @@ Rules are organized by **functional concern**, not technology:
 
 **Filename format**: `{technology}_{pattern_name}.md` (use underscores)
 
-## Governance Commands and Skills
-
-Governance capabilities (`team.discover`, `team.curate`, `team.evolve`, `team.skills`, `team.verify`, `team.repair`) are bundled with the Specify CLI as the `team-ai-directives` extension. They are installed automatically when a project is initialized with `--team-ai-directives <this-repo>`.
-
-This repository contains only **domain skills** (for example `dbt-template`, `helm-charts`, `github-actions`). Register new domain skills in `.skills.json` and place them under `skills/{skill-name}/SKILL.md`.
-
 ## Using Skills
 
 Skills in `skills/{skill-name}/`:
@@ -57,6 +49,12 @@ Skills in `skills/{skill-name}/`:
 4. Check `references/` for supporting content
 5. Use `scripts/` for automation if present
 
+## Governance Commands and Skills
+
+Governance capabilities (`team.discover`, `team.curate`, `team.evolve`, `team.skills`, `team.verify`, `team.repair`) are bundled with the Specify CLI as the `team-ai-directives` extension. They are installed automatically when a project is initialized with `--team-ai-directives <this-repo>`.
+
+This repository contains only **domain skills**. Register new domain skills in `.skills.json` and place them under `skills/{skill-name}/SKILL.md`.
+
 ## Using Rules
 
 Access rules via:
@@ -66,6 +64,8 @@ Access rules via:
 3. **CDR.md** - Check for recently approved contributions
 
 ## CDR.md
+
+`CDR.md` is the searchable context module index — it serves the same role for context modules as `.skills.json` serves for skills. Its index table acts as the primary matching surface for the bundled `team.discover` command, which reads the `Descriptor` column to select relevant modules without scanning every file.
 
 Context Directive Records track approved contributions from various projects. Review to:
 

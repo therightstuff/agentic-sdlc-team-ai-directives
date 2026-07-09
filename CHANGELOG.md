@@ -1,5 +1,43 @@
 # Changelog
 
+## [v2.0.0] - 2026-07-09
+
+### Breaking Changes
+
+- **Governance moves back to the Spec-Kit extension**: the `team-ai-directives`
+  bundled extension is restored in `agentic-sdlc-spec-kit` (v4.0.0). Governance
+  commands (`team.discover`, `team.curate`, `team.evolve`, `team.skills`,
+  `team.verify`, `team.repair`) and their matching skills are no longer in this
+  repository.
+- **Manifest schema 2.0.0**: `.skills.json` switches from
+  `required`/`recommended`/`internal` to a flat `default` name list +
+  `external` map + `blocked` list. `default[]` now contains only domain skills.
+- **`team-constitution` removed**: constitution loading is injected
+  via the `agent-context` bootstrap, not a command or skill.
+
+### Added
+
+- **`CLAUDE.md`**: project context file for Claude agents.
+- **`templates/agents-template.md`**: relocated from the Spec-Kit extension.
+
+### Changed
+
+- **`AGENTS.md`**: rewritten to reference bundled governance commands and
+  clarify that this repository contains only domain skills.
+- **`README.md` / `GETTING_STARTED.md`**: updated installation description and
+  skill tables.
+- **`.skills.json`**: removed governance skills from `default[]`.
+
+### Removed
+
+- `skills/team-curate/`, `skills/team-discover/`, `skills/team-evolve/`,
+  `skills/team-repair/`, `skills/team-skills/`, `skills/team-verify/`.
+
+### Migration
+
+- Projects using `--team-ai-directives` should re-run `specify init` to
+  install the restored bundled extension and refresh domain skills.
+
 ## [v1.8.2] - 2026-06-28
 
 ### Changed

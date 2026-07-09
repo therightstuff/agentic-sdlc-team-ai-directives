@@ -36,23 +36,17 @@ Use the spec-kit CLI to install this repo as an extension in your project:
 specify init <project> --team-ai-directives https://github.com/your-org/team-ai-directives.git
 ```
 
-The directives are installed to `.specify/extensions/team-ai-directives/`.
+During `specify init`:
 
-### Available Commands
+- The bundled `team-ai-directives` extension is installed, providing governance commands (`team.discover`, `team.curate`, `team.evolve`, `team.skills`, `team.verify`, `team.repair`) and their matching skills.
+- Domain skills listed in `.skills.json` `default[]` are copied to the agent's skills directory.
+- The optional `agent-context` extension injects team-directives awareness into the project's context file.
 
-After installation, these commands are available:
+### Available Skills
 
-| Command | Description |
-|---------|-------------|
-| `adlc.team-ai-directives.verify` | Health check - verifies extension, skills, CDR, and constitution |
-| `adlc.team-ai-directives.discover` | Auto-discovers relevant context for features |
-| `adlc.team-ai-directives.constitution` | Loads team principles before constitution update |
+After installation, the bundled governance skills are available, plus any domain skills registered in this repository's `.skills.json`.
 
-Run verification:
-
-```bash
-specify run adlc.team-ai-directives.verify
-```
+Run verification by invoking the `team.verify` command.
 
 ---
 

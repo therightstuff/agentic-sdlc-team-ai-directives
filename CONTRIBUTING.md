@@ -246,84 +246,18 @@ Thank you for helping keep our shared knowledge base sharp and reliable!
 
 ## Release Process
 
-### Before Creating a Release
-
-Run the release validation command:
-
-```bash
-adlc.team-ai-directives.release
-```
-
-This command performs these checks and auto-corrects issues:
-
-#### Validation Checks
-
-| Check | Auto-Correct | Description |
-|-------|--------------|-------------|
-| Version Sync | ✅ | `extension.yml` ↔ `catalog.json` version match |
-| Repository URL | ✅ | Consistent with git remote (works for upstream & forks) |
-| Timestamp | ✅ | `catalog.json` `updated_at` is current |
-| Fork Detection | ℹ️ | Detect fork and validate version format |
-| Git Tag | ℹ️ | Check if tag already exists |
-
-#### Auto-Correction
-
-By default, the command auto-corrects issues:
-- Updates `catalog.json` version to match `extension.yml`
-- Updates repository URLs in both `extension.yml` and `catalog.json` to match git remote
-- Refreshes timestamp to current ISO 8601
-
-To validate without making changes:
-```bash
-RELEASE_DRY_RUN=true adlc.team-ai-directives.release
-```
-
-#### Exit Codes
-
-- `0` - Release ready (all checks passed or auto-corrected)
-- `1` - Cannot auto-correct (manual intervention needed)
-
-#### Output Example
-
-```
-Release Validation & Auto-Correction
-====================================
-
-Version: 1.7.0
-Repository: tikalk/agentic-sdlc-team-ai-directives
-
-[FIXED] Version sync: catalog.json updated to 1.7.0
-[OK] Repository URL: tikalk (correct)
-[FIXED] Timestamp updated to 2026-05-22T00:00:00Z
-[OK] Tag v1.7.0 does not exist (ready to create)
-
-Release Ready: YES
-
-Next steps:
-1. Review changes: git diff
-2. Commit: git commit -am "chore: prepare release v1.7.0"
-3. Tag: git tag v1.7.0
-4. Push: git push origin main --tags
-```
+This repository is a knowledge base, not a Spec-Kit extension. Releases are
+managed with git tags and the `.skills.json` `version` field.
 
 ### Release Checklist
 
-1. Run `adlc.team-ai-directives.release` to validate/auto-correct
-2. Review changes: `git diff`
-3. Commit changes: `git commit -am "chore: prepare release vX.X.X"`
-4. Create tag: `git tag vX.X.X`
-5. Push: `git push origin main --tags`
-6. (Optional) Create GitHub release with notes
-
-### Version Synchronization
-
-Two files must stay synchronized:
-
-| File | Field | Value |
-|------|-------|-------|
-| `extension.yml` | `extension.version` | `X.X.X` |
-| `extensions/catalog.json` | `extensions.*.version` | `X.X.X` |
-| `extensions/catalog.json` | `updated_at` | Current ISO 8601 |
+1. Update `.skills.json` `version` if the manifest changed.
+2. Update `CHANGELOG.md`.
+3. Review changes: `git diff`
+4. Commit changes: `git commit -am "chore: prepare release vX.X.X"`
+5. Create tag: `git tag vX.X.X`
+6. Push: `git push origin main --tags`
+7. (Optional) Create GitHub release with notes
 
 ### Git Tag Format
 
@@ -331,7 +265,7 @@ Two files must stay synchronized:
 v{VERSION}
 ```
 
-Examples: `v1.6.1`, `v1.7.0`, `v2.0.0`
+Examples: `v1.6.1`, `v2.0.0`
 
 ### Fork Versioning
 
@@ -347,9 +281,8 @@ When maintaining a fork, use build metadata suffix:
 **Fork Workflow:**
 1. Sync with upstream: `git fetch upstream && git merge upstream/main`
 2. Increment fork number in version
-3. Run `adlc.team-ai-directives.release` to validate
-4. Tag with fork suffix: `git tag v1.6.1+acme2`
-5. Push: `git push origin main --tags`
+3. Tag with fork suffix: `git tag v1.6.1+acme2`
+4. Push: `git push origin main --tags`
 
 **Upstream Merge:**
 - When contributing back, remove fork suffix

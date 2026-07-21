@@ -4,31 +4,48 @@ A forkable foundation for version-controlled AI agent behavior.
 
 **Built on the [Twelve-Factor Agentic SDLC](https://github.com/tikalk/agentic-sdlc-12-factors)** — this repository implements Factor XI: Directives as Code, treating all AI instructions as version-controlled assets.
 
+**How the pieces fit:**
+
+- **[12-Factor Agentic SDLC](https://github.com/tikalk/agentic-sdlc-12-factors)** — the methodology (strategic mindset, structured planning, directives as code, traceability)
+- **This repo** — the version-controlled team knowledge base (constitution, personas, rules, skills, CDRs)
+- **[agentic-sdlc-spec-kit](https://github.com/tikalk/agentic-sdlc-spec-kit)** — the Spec-Driven Development toolkit; consumes this knowledge base via the bundled `team-ai-directives` extension
+- **[adlc-team-skills](https://github.com/tikalk/adlc-team-skills)** — agent skills that implement the methodology; consume this knowledge base via `team-*` and `levelup-*` skills
+
 **Quick Start:** See [GETTING_STARTED.md](GETTING_STARTED.md) for a 5-minute setup guide.
 
 ## Installation
 
-This repository can be installed in two ways:
+This knowledge base is consumed in two ways at runtime — pick the one that matches your project setup. Fork and clone for authoring and customization.
 
-### Option 1: As a Spec Kit Extension (Recommended)
+### Option 1: Spec Kit Projects
 
-Install via the spec-kit CLI using the `--team-ai-directives` flag:
+For projects managed with the [Agentic SDLC Spec Kit](https://github.com/tikalk/agentic-sdlc-spec-kit), install via the `specify` CLI using the `--team-ai-directives` flag:
 
 ```bash
 # Initialize project with team-ai-directives
 specify init <project> --team-ai-directives https://github.com/your-org/team-ai-directives.git
 ```
 
-The Specify CLI installs the bundled `team-ai-directives` extension (governance commands and skills) and copies this repository's domain skills into the agent's skills directory. Context modules are referenced through the `agent-context` extension.
+The Specify CLI installs the bundled `team-ai-directives` extension (governance commands and skills) and copies this repository's `default` domain skills into the agent's skills directory. Context modules are referenced through the `agent-context` extension.
 
 ```bash
 # Or from a specific release tag
 specify init <project> --team-ai-directives https://github.com/your-org/team-ai-directives/archive/refs/tags/v1.3.0.zip
 ```
 
-### Option 2: Development (Fork and Clone)
+### Option 2: Any Skills-Capable Agent
 
-Fork this repository and clone it locally for development or customization:
+For agents that support the [Agent Skills standard](https://agentskills.io) (Claude Code, Codex, OpenCode, Cursor, Gemini, and others), install the governance and architecture skills from [adlc-team-skills](https://github.com/tikalk/adlc-team-skills):
+
+```bash
+npx skills add tikalk/adlc-team-skills
+```
+
+Then invoke the `team-setup` skill in your project to clone, point at, or scaffold this knowledge base. The skills locate it via `.adlc/init-options.json` or the `ADLC_TEAM_AI_DIRECTIVES` environment variable.
+
+### Option 3: Authoring (Fork and Clone)
+
+Fork this repository and clone it locally to customize the knowledge base itself:
 
 ```bash
 git clone https://github.com/your-org/team-ai-directives.git
@@ -126,7 +143,7 @@ Published directives include a verification banner:
 
 ### Verification Workflow
 
-1. Run `/levelup.validate` in your project to scan team-ai-directives
+1. Scan the knowledge base — `/levelup.validate` in spec-kit projects, or `team-repair --freshness` / `team-repair --conflicts` in skills-based projects
 2. Valid directives get their `verified` timestamp updated
 3. Stale directives (>30 days) are flagged for review
 4. Update or deprecate stale directives as needed
@@ -140,6 +157,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full verification workflow.
 3. **Personas** provide role-specific guidance with rule references
 4. **Skills** are triggered by user requests (matched via `.skills.json`)
 5. **Rules** are accessed through personas, not directly from skills
+
+### Two Delivery Mechanisms
+
+The same knowledge base is consumed through two complementary mechanisms:
+
+- **Spec Kit extension** — governance commands (canonical names `adlc.team-ai-directives.*`, invoked via short aliases like `team.discover`). Hooks auto-run `team.discover` before `specify` and `plan`. The knowledge base path is stored in `.specify/init-options.json`.
+- **Agent Skills ([adlc-team-skills](https://github.com/tikalk/adlc-team-skills))** — model-invoked skills following the [Agent Skills standard](https://agentskills.io). `team-boot` auto-loads the constitution at session start; `team-discover` auto-finds relevant context per task. The knowledge base path is resolved from `.adlc/init-options.json` or the `ADLC_TEAM_AI_DIRECTIVES` environment variable.
+
+Both mechanisms read the same files — `AGENTS.md`, `CDR.md`, `.skills.json`, and `context_modules/` — and can coexist in one project.
 
 ---
 
@@ -372,7 +398,7 @@ When a user makes a request, an agent:
 4. Optionally loads files from `references/` for deeper context.
 5. Applies the skill while completing the task.
 
-Skills are loaded **on-demand** — only the skills relevant to the current request are activated. Required skills defined in `.skills.json` are always available to the agent.
+Skills are loaded **on-demand** — only the skills relevant to the current request are activated. Default skills listed in `.skills.json` are auto-installed into the agent's skills directory during project init.
 
 ### Skill Folder Structure
 
@@ -417,23 +443,16 @@ The `description` field is critical — it tells the agent **when** to activate 
 
 ### The `.skills.json` Manifest
 
-`.skills.json` is the single source of truth for skill discovery and policy. It defines which skills are required, recommended, internal, blocked, or available in the registry.
+`.skills.json` is the single source of truth for skill discovery and policy. It defines which local skills are auto-installed during project init, which external skills are available on demand, and which skills are blocked.
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "source": "team-ai-directives",
-  "description": "Team skills manifest for the Skills Package Manager.",
-  "skills": {
-    "required": { ... },
-    "recommended": { ... },
-    "internal": { ... },
-    "blocked": [ ... ]
-  },
-  "registry": {
-    "description": "Additional skills available for manual discovery.",
-    "skills": { ... }
-  },
+  "description": "Team skills manifest. The `default` list contains skill names that are auto-installed during project init. The `external` map contains on-demand skills fetched by URL. The `blocked` list contains skills that must never be installed.",
+  "default": [ ... ],
+  "external": { ... },
+  "blocked": [ ... ],
   "policy": { ... }
 }
 ```
@@ -442,36 +461,33 @@ The `description` field is critical — it tells the agent **when** to activate 
 
 | Category | Meaning |
 |---|---|
-| `required` | Always loaded by the agent; auto-installed if `auto_install_required` is `true` |
-| `recommended` | Suggested skills; surfaced to the agent but not mandatory |
-| `internal` | Skills hosted locally in this repository |
+| `default` | Local skills (from this repository's `skills/` directory) auto-installed into the agent's skills directory during project init |
+| `external` | Skills fetched on demand from a URL; not stored locally |
 | `blocked` | Skills explicitly prohibited; the agent must refuse to use them |
-| `registry` | Additional skills available for on-demand discovery and installation |
 
 #### Skill Entry Format
 
-Each skill entry in the manifest uses a URI as its key:
-
-- **Local skill**: `"local:./skills/my-skill"`
-- **External skill**: `"github:org/repo/skill-name"`
+**Local skills** are listed by folder name in the `default` array:
 
 ```json
-"local:./skills/my-skill": {
-  "version": "*",
-  "description": "Human-readable description of what the skill does.",
-  "categories": ["tag1", "tag2"]
-}
+"default": [
+  "dbt-template",
+  "github-actions",
+  "helm-charts"
+]
 ```
 
-External skills add `source` and `url` fields pointing to the raw `SKILL.md`:
+**External skills** are keyed by name with metadata pointing to the raw `SKILL.md`:
 
 ```json
-"github:org/repo/skill-name": {
-  "version": "^1.0.0",
-  "description": "...",
-  "categories": ["..."],
-  "source": "https://github.com/org/repo",
-  "url": "https://raw.githubusercontent.com/org/repo/main/skills/skill-name/SKILL.md"
+"external": {
+  "react-best-practices": {
+    "version": "^1.0.0",
+    "description": "...",
+    "categories": ["frontend", "react"],
+    "source": "https://github.com/org/repo",
+    "url": "https://raw.githubusercontent.com/org/repo/main/skills/skill-name/SKILL.md"
+  }
 }
 ```
 
@@ -480,27 +496,22 @@ External skills add `source` and `url` fields pointing to the raw `SKILL.md`:
 #### Adding a Local Skill
 
 1. Create the skill folder and `SKILL.md` (see Creating a New Skill below).
-2. Register the skill in `.skills.json` under the appropriate category:
+2. Add the skill's folder name to the `default` array in `.skills.json`:
 
 ```json
-"skills": {
-  "required": {
-    "local:./skills/my-skill": {
-      "version": "*",
-      "description": "What my skill does.",
-      "categories": ["my-category"]
-    }
-  }
-}
+"default": [
+  "dbt-template",
+  "my-skill"
+]
 ```
 
 #### Adding an External Skill
 
-External skills are fetched from a URL at runtime. Add them to `recommended` or `registry`:
+External skills are fetched from a URL at runtime. Add them to the `external` map:
 
 ```json
-"recommended": {
-  "github:org/repo/skill-name": {
+"external": {
+  "my-external-skill": {
     "version": "^1.0.0",
     "description": "Short description with trigger phrases.",
     "categories": ["relevant", "tags"],
@@ -590,17 +601,17 @@ For example, a DevOps Engineer session might look like:
 3. **Skill**: `github-actions` — activated when the user asks about CI/CD pipelines
 4. **Skill**: `helm-charts` — activated when the user asks about packaging for Kubernetes
 
-The persona tells the agent *who it is*. The skills tell it *how to execute* specific tasks.
+The persona tells the agent _who it is_. The skills tell it _how to execute_ specific tasks.
 
 ### External Skills
 
 External skills are fetched at runtime from their `url` field in `.skills.json`. They are not stored locally in this repository.
 
-To discover registry skills, ask your AI agent:
+To discover external skills, ask your AI agent:
 
-> "What skills are available in the registry?"
+> "What skills are available in the external registry?"
 
-The agent will read `.skills.json`, list the `registry` entries, and describe when each is useful. To use one, the agent fetches the `SKILL.md` from the provided `url`.
+The agent will read `.skills.json`, list the `external` entries, and describe when each is useful. To use one, the agent fetches the `SKILL.md` from the provided `url`.
 
 ### Policy Settings
 
@@ -608,7 +619,7 @@ The `policy` section of `.skills.json` controls agent behavior:
 
 ```json
 "policy": {
-  "auto_install_required": true,
+  "auto_install_default": true,
   "enforce_blocked": true,
   "allow_project_override": true
 }
@@ -616,7 +627,7 @@ The `policy` section of `.skills.json` controls agent behavior:
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| `auto_install_required` | `true` | Required skills are automatically loaded without user prompting |
+| `auto_install_default` | `true` | Skills in the `default` list are automatically installed during project init |
 | `enforce_blocked` | `true` | The agent refuses to use any skill in the `blocked` list |
 | `allow_project_override` | `true` | Individual projects can override manifest settings locally |
 
@@ -624,22 +635,28 @@ The `policy` section of `.skills.json` controls agent behavior:
 
 ## Governance Commands and Skills
 
-Governance capabilities are bundled with the Specify CLI as the `team-ai-directives` extension and installed automatically when a project is initialized with `--team-ai-directives <this-repo>`:
+Governance capabilities are available through both delivery mechanisms — as **spec-kit commands** from the bundled `team-ai-directives` extension (installed by `specify init --team-ai-directives <this-repo>`) and as **agent skills** from [adlc-team-skills](https://github.com/tikalk/adlc-team-skills):
 
-| Command | Skill | Purpose |
-|---------|-------|---------|
-| `team.discover` | `team-discover` | Discover relevant personas, rules, examples, and skills for the current feature |
-| `team.curate` | `team-curate` | Propose CDRs from execution traces |
-| `team.evolve` | `team-evolve` | Apply accepted CDRs to the knowledge base |
-| `team.skills` | `team-skills` | Browse and install team skills |
-| `team.verify` | `team-verify` | Health check - verifies knowledge base config, skills registry, CDR tracking, and constitution alignment |
-| `team.repair` | `team-repair` | Re-index CDR.md, .skills.json, and AGENTS.md |
+| Capability | Spec Kit command | Agent Skill | Purpose |
+|---|---|---|---|
+| Bootstrap session | `team.boot` | `team-boot` (auto) | Load the constitution and orient the agent before any task |
+| Discover context | `team.discover` | `team-discover` (auto) | Find relevant personas, rules, examples, and skills for the current task |
+| Set up knowledge base | `specify init --team-ai-directives` | `team-setup` | Clone, point at, or scaffold the knowledge base |
+| Repair | `team.repair` | `team-repair` | Re-index CDR.md, .skills.json, and AGENTS.md; health check; conflict scan; freshness verification |
+| Manage skills | `team.skills` | `team-skills` | Browse and install team skills from the knowledge base |
+| Verify health | `team.verify` | `team-repair --health-only` | Verify knowledge base config, skills registry, CDR tracking, and constitution alignment |
+| Curate CDRs | `team.curate`, `levelup.init` / `levelup.specify` | `levelup-init` / `levelup-specify` | Propose Context Directive Records from a codebase or completed feature |
+| Review CDRs | `levelup.clarify` | `levelup-clarify` | Accept, reject, or defer proposed CDRs |
+| Publish CDRs | `team.evolve`, `levelup.implement` | `levelup-implement` | Compile accepted CDRs into knowledge base artifacts and a draft PR |
+| Validate | `levelup.validate` | `team-repair --conflicts` / `--freshness` | Scan for rule conflicts and update verification timestamps |
+
+**Naming conventions:** spec-kit commands are canonically named `adlc.team-ai-directives.*` / `adlc.levelup.*` and are invoked via the short aliases shown above (`team.discover`, `levelup.init`). Agent skills use dash-names (`team-discover`, `levelup-init`) and are model-invoked through the [Agent Skills standard](https://agentskills.io).
 
 ### Integration
 
-The `agent-context` extension injects team-directives awareness into the project's context file during `specify init`. It prompts the agent to invoke `team.discover` before feature work and to inherit the team constitution when updating project principles.
+In **spec-kit projects**, the `agent-context` extension injects team-directives awareness into the project's context file during `specify init`. It prompts the agent to invoke `team.discover` before feature work and to inherit the team constitution when updating project principles. Run verification anytime by invoking the `team.verify` command.
 
-Run verification anytime by invoking the `team.verify` command.
+In **skills-based projects**, `team-boot` performs the equivalent role — loading the constitution at session start and chaining into `team-discover`. Run health checks anytime with the `team-repair` skill.
 
 ---
 

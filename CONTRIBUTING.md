@@ -82,25 +82,22 @@ age_days: 33
 
 ### Verification Process
 
-1. **Automated Verification** (via LevelUp):
-   ```bash
-   # Run in any project using team-ai-directives
-   /levelup.validate
-   ```
-   This scans all directives and updates `verified` timestamps for valid ones.
+1. **Automated Verification** — scan all directives and update `verified` timestamps for valid ones:
+   * Spec Kit projects: run `/levelup.validate`
+   * Skills-based projects: invoke the `team-repair` skill (`--freshness` / `--conflicts`)
 
 2. **Manual Verification** (when reviewing PRs):
-   - Check that the directive still applies
-   - Verify code examples still work
-   - Confirm no conflicts with newer rules
-   - Update the `verified` date in the YAML frontmatter
+   * Check that the directive still applies
+   * Verify code examples still work
+   * Confirm no conflicts with newer rules
+   * Update the `verified` date in the YAML frontmatter
 
 3. **Stale Directives** (>30 days without verification):
-   - Flagged by `/levelup.validate`
-   - Should be reviewed and either:
-     - Updated (refresh content, reset `verified` date)
-     - Deprecated (move to archive or delete)
-     - Confirmed still valid (update `verified` date only)
+   * Flagged by `/levelup.validate` or `team-repair`
+   * Should be reviewed and either:
+     * Updated (refresh content, reset `verified` date)
+     * Deprecated (move to archive or delete)
+     * Confirmed still valid (update `verified` date only)
 
 ### Updating Verification Metadata
 
@@ -274,9 +271,9 @@ When maintaining a fork, use build metadata suffix:
 **Format:** `{upstream_version}+{fork_name}{fork_release_number}`
 
 **Examples:**
-- `1.6.1+acme1` - Acme's first release based on upstream 1.6.1
-- `1.6.1+acme2` - Acme's second iteration
-- `1.6.1+tikal3` - Tikal's third iteration on 1.6.1
+* `1.6.1+acme1` - Acme's first release based on upstream 1.6.1
+* `1.6.1+acme2` - Acme's second iteration
+* `1.6.1+tikal3` - Tikal's third iteration on 1.6.1
 
 **Fork Workflow:**
 1. Sync with upstream: `git fetch upstream && git merge upstream/main`
@@ -285,5 +282,5 @@ When maintaining a fork, use build metadata suffix:
 4. Push: `git push origin main --tags`
 
 **Upstream Merge:**
-- When contributing back, remove fork suffix
-- Use clean upstream version: `1.6.1` (not `1.6.1+acme2`)
+* When contributing back, remove fork suffix
+* Use clean upstream version: `1.6.1` (not `1.6.1+acme2`)

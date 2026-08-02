@@ -35,8 +35,9 @@ Context Directive Records (CDRs) track approved contributions to team-ai-directi
 | CDR-2026-025 | context_modules/rules/style-guides/python/pep8_and_docstrings.md | Rule | Accepted | 2026-05-21 | 2026-05-21 | 0d | Python PEP 8 conventions and docstring standards |
 | CDR-2026-026 | context_modules/rules/testing/java/junit5_best_practices.md | Rule | Accepted | 2026-05-21 | 2026-05-21 | 0d | JUnit 5 testing best practices for Java |
 | CDR-2026-027 | context_modules/rules/testing/python/pytest_patterns.md | Rule | Accepted | 2026-05-21 | 2026-05-21 | 0d | Pytest testing patterns and conventions for Python |
+| CDR-2026-028 | skills/tech-radar/tech-radar-context/SKILL.md | Skill | Accepted | 2026-08-01 | 2026-08-01 | 0d | Tech radar context discovery for tech stack, library, and architecture selection |
 
-**Stats**: 29 CDRs | Last Updated: 2026-05-21
+**Stats**: 30 CDRs | Last Updated: 2026-08-01
 
 ---
 
@@ -1325,6 +1326,50 @@ Module accepted as part of core team-ai-directives repository.
 
 - File created: 2026-05-21
 - Part of v1.6.1 re-indexing
+
+---
+
+## CDR-2026-028: Skill: Tech Radar Context
+
+### Status
+
+**Accepted**
+
+### Dates
+
+- **Created**: 2026-08-01
+- **Modified**: 2026-08-01
+- **Verified**: 2026-08-01
+- **Age**: 0d
+
+### Source
+
+tikalk/adlc-team-skills
+
+### Target Module
+
+`skills/tech-radar/tech-radar-context/SKILL.md`
+
+### Context Type
+
+Skill
+
+### Signal Gate
+
+✓ Team-wide | ✓ High Value | ✓ Unique | ✓ Evidence
+
+### Context
+
+Teams need to make tech stack, framework, and database decisions aligned with Tikal's Israeli Tech Radar.
+
+### Decision
+
+Added model-invoked `tech-radar-context` skill to discover and inject Tikal Tech Radar adoption rings, opinions, and alternatives.
+
+### Evidence
+
+- Skill created in `skills/tech-radar/tech-radar-context/SKILL.md`
+- Registered in `.skills.json` under `default`
 
 ---
 

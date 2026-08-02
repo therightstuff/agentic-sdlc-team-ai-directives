@@ -8,7 +8,8 @@
     "helm-charts",
     "crossplane",
     "external-secrets",
-    "gke-workload-identity"
+    "gke-workload-identity",
+    "tech-radar-context"
   ],
   "external": {
     "react-best-practices": {

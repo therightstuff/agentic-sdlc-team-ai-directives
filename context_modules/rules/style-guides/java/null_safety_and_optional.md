@@ -3,13 +3,13 @@ type: Rule
 title: Java Null Safety and Optional
 description: Java null safety and Optional usage patterns
 tags: [java, style-guide, null-safety, optional]
-timestamp: 2026-06-14T00:00:00Z
+timestamp: 2026-08-04T00:00:00Z
 id: rule-rules-style-guides-java-null_safety_and_optional
-cdr_ref: null
+cdr_ref: CDR-2026-024
 created: 2026-05-23
 modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
+verified: 2026-08-04
+age_days: 0
 evidence: []
 ---
 

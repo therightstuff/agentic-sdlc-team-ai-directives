@@ -3,13 +3,13 @@ type: Example
 title: Class-Based Pytest Suite
 description: Example of class-based pytest test structure for Python services
 tags: [python, testing, pytest, class-based, example]
-timestamp: 2026-06-14T00:00:00Z
+timestamp: 2026-08-04T00:00:00Z
 id: example-examples-testing-pytest_class_based
 cdr_ref: null
 created: 2026-05-23
 modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
+verified: 2026-08-04
+age_days: 0
 evidence: []
 ---
 

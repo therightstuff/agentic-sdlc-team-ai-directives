@@ -2,16 +2,18 @@
 type: Example
 title: LevelUp Contribution Prompt
 description: Prompt template for extracting successful workflow patterns and contributing them to team-ai-directives
+resource: ./context_modules/examples/prompts/leveling_up.md
 tags: [prompt, levelup, contribution, team-ai-directives]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: example-examples-prompts-leveling_up
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 The work for issue {ISSUE-123} is complete, and this chat history represents a successful workflow. Let's formalize this success for the team.
 1. Analyze and Extract: Review our entire interaction and extract the single most valuable new rule or code exemplar that made this workflow effective.

@@ -2,16 +2,18 @@
 type: Example
 title: Plan Generation Prompt
 description: Prompt template for generating detailed step-by-step implementation plans from mission briefs
+resource: ./context_modules/examples/prompts/plan.md
 tags: [prompt, planning, mission-brief, implementation]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: example-examples-prompts-plan
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 Based on my Mission Brief in issue {ISSUE-123}:
 - Generate a detailed, step-by-step plan.

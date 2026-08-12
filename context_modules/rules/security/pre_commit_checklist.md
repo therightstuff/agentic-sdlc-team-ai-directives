@@ -2,16 +2,18 @@
 type: Rule
 title: Pre-Commit Security Checklist
 description: Pre-commit security checklist to verify before submitting code
+resource: ./context_modules/rules/security/pre_commit_checklist.md
 tags: [security, pre-commit, checklist, code-review]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-security-pre_commit_checklist
 cdr_ref: CDR-2026-020
 created: 2026-05-03
-modified: 2026-06-14
-verified: 2026-05-21
-age_days: 42
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: Pre-Commit Security Checklist
 

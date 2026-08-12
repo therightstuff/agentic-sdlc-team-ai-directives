@@ -2,16 +2,18 @@
 type: Rule
 title: Java Google Style Guide
 description: Google Java Style Guide conventions
+resource: ./context_modules/rules/style-guides/java/google_style_guide.md
 tags: [java, style-guide, google-style, formatting]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-style-guides-java-google_style_guide
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: Java Style Guide
 

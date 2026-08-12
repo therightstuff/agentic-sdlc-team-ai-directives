@@ -2,16 +2,18 @@
 type: Rule
 title: Prevent SQL Injection
 description: Standards for preventing SQL injection vulnerabilities across all languages with language-specific examples
+resource: ./context_modules/rules/security/sql_injection_prevention.md
 tags: [security, sql-injection, prevention, database, input-validation]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-security-sql_injection_prevention
 cdr_ref: CDR-2026-021
 created: 2026-04-29
-modified: 2026-06-14
-verified: 2026-05-21
-age_days: 46
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: Prevent SQL Injection
 

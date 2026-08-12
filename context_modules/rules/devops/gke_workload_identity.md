@@ -2,16 +2,18 @@
 type: Rule
 title: GKE Workload Identity
 description: Google Kubernetes Engine Workload Identity for keyless GCP authentication
+resource: ./context_modules/rules/devops/gke_workload_identity.md
 tags: [devops, gke, gcp, workload-identity, security, authentication]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-devops-gke_workload_identity
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # GKE Workload Identity
 

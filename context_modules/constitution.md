@@ -2,16 +2,18 @@
 type: Constitution
 title: Team Constitution
 description: Core principles governing all AI agent behavior and team interactions
+resource: ./context_modules/constitution.md
 tags: [governance, principles, constitution]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: constitution
 cdr_ref: null
 created: 2026-01-04
-modified: 2026-06-28
-verified: 2026-05-21
-age_days: 161
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Team Constitution
 

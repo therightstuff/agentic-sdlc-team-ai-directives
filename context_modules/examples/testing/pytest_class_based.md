@@ -2,16 +2,18 @@
 type: Example
 title: Class-Based Pytest Suite
 description: Example of class-based pytest test structure for Python services
+resource: ./context_modules/examples/testing/pytest_class_based.md
 tags: [python, testing, pytest, class-based, example]
-timestamp: 2026-06-14T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: example-examples-testing-pytest_class_based
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-05-23
-age_days: 22
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Example: Class-Based Pytest Suite
 

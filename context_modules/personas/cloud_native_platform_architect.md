@@ -1,17 +1,19 @@
 ---
 type: Persona
 title: Cloud-Native Platform Architect
-description: Kubernetes, GitOps, platform engineering specialist
+description: "Kubernetes, GitOps, platform engineering specialist"
+resource: ./context_modules/personas/cloud_native_platform_architect.md
 tags: [cloud-native, kubernetes, gitops, platform-engineering, infrastructure]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: persona-cloud-native-platform-architect
 cdr_ref: CDR-2026-003
 created: 2026-01-16
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Persona: Cloud-Native Platform Architect
 

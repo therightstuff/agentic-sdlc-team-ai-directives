@@ -1,17 +1,19 @@
 ---
 type: Rule
 title: Spring Boot Application Patterns
-description: Spring Boot data layer patterns and conventions for repository design, configuration, and testing
+description: "Spring Boot data layer patterns and conventions for repository design, configuration, and testing"
+resource: ./context_modules/rules/data/spring_boot_patterns.md
 tags: [java, spring-boot, data, jpa, testing]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-data-spring_boot_patterns
-cdr_ref: CDR-2026-009
+cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: Spring Boot Application Patterns
 

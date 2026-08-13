@@ -2,16 +2,18 @@
 type: Rule
 title: Crossplane Compositions
 description: Crossplane Composition and XRD patterns for cloud-agnostic infrastructure as code
+resource: ./context_modules/rules/devops/crossplane_compositions.md
 tags: [devops, crossplane, infrastructure, iac, kubernetes, cloud]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-devops-crossplane_compositions
-cdr_ref: CDR-2026-010
+cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: Generic Crossplane Compositions
 

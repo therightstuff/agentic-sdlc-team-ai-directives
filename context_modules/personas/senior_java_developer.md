@@ -1,17 +1,19 @@
 ---
 type: Persona
 title: Senior Java Developer
-description: Enterprise Java, Spring Boot, testing specialist
+description: "Enterprise Java, Spring Boot, testing specialist"
+resource: ./context_modules/personas/senior_java_developer.md
 tags: [java, spring-boot, backend, testing, enterprise]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: persona-senior-java-developer
 cdr_ref: CDR-2026-006
 created: 2026-01-04
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Senior Java Developer
 

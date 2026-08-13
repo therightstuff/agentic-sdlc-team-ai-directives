@@ -2,16 +2,18 @@
 type: Example
 title: Class-Based JUnit 5 Test Suite
 description: Example of class-based JUnit 5 test structure with Mockito extension
+resource: ./context_modules/examples/testing/junit5_class_based.md
 tags: [java, testing, junit5, class-based, example]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: example-examples-testing-junit5_class_based
 cdr_ref: null
 created: 2026-05-23
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-23T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Example: Class-Based JUnit 5 Test Suite
 

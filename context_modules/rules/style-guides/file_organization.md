@@ -1,17 +1,19 @@
 ---
 type: Rule
 title: File Organization and Structure
-description: Standards for file organization, sizing, and code structure across all languages
+description: "Standards for file organization, sizing, and code structure across all languages"
+resource: ./context_modules/rules/style-guides/file_organization.md
 tags: [style-guide, file-organization, code-structure, maintainability]
-timestamp: 2026-08-04T00:00:00Z
+generated: { by: agent:legacy, at: 2026-06-14T00:00:00Z }
 id: rule-rules-style-guides-file_organization
 cdr_ref: CDR-2026-022
 created: 2026-05-03
-modified: 2026-06-14
-verified: 2026-08-04
-age_days: 0
-evidence: []
+verified:
+  - { by: process:team-repair, at: 2026-05-21T00:00:00Z }
+status: stable
+stale_after: 180d
 ---
+
 
 # Rule: File Organization and Structure
 
